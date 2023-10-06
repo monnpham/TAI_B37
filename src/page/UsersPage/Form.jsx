@@ -1,17 +1,14 @@
 import axios from "axios";
 import React, { Component, createRef } from "react";
 import { connect } from "react-redux";
-import { SET_DATA_FORM, } from "../../redux/constant/user";
+import { SET_DATA_FORM, SET_USER } from "../../redux/constant/user";
 import { setUserAction } from "../../redux/action/user";
 import { message } from "antd";
 
 class Form extends Component {
-    // chức năng thêm
-    // 1. tạo state chứ input từ user
-    // 2. gọi api với method POST, đưa data từ state lên server
     componentDidMount() {
         this.inputRef.current.focus();
-        this.inputRef.current.value = "defaultAccount";
+        this.inputRef.current.value = "";
         this.inputRef.current.style.color = "red";
     }
     inputRef = createRef();
@@ -20,7 +17,7 @@ class Form extends Component {
     handleChangeForm = (event) => {
         let { value, name } = event.target;
         let user = { ...this.props.user, [name]: value };
-        this.props.handleSetDataForm(user);
+        this.props.hanleSetDataForm(user);
     };
     handleAddUser = () => {
         axios({
@@ -32,6 +29,7 @@ class Form extends Component {
                 console.log(res);
                 this.formRef.current.reset();
                 this.props.handleSetUser();
+                //
             })
             .catch((err) => {
                 console.log(err);
@@ -46,14 +44,13 @@ class Form extends Component {
             .then((res) => {
                 console.log(res);
                 this.props.handleSetUser();
-                message.success("Cập nhập thành công");
+                message.success("cập nhật thành công")
                 this.formRef.current.reset();
             })
             .catch((err) => {
                 console.log(err);
             });
-    };
-
+    }
     render() {
         return (
             <div>
@@ -81,7 +78,7 @@ class Form extends Component {
                         type="text"
                         class="form-control"
                         name="password"
-                        placeholder="Password"
+                        placeholder="Passowrd"
                     />
                     <button
                         onClick={this.handleAddUser}
@@ -90,15 +87,9 @@ class Form extends Component {
                     >
                         Thêm
                     </button>
-                    <button
-                        onClick={() => {
-                            this.handleUpdateUser(this.props.user.id);
-                        }}
-                        type="button"
-                        className="btn btn-secondary"
-                    >
-                        Cập nhập
-                    </button>
+                    <button onClick={() => {
+                        this.handleUpdateUser(this.props.user.id);
+                    }} type="button" className="btn btn-success ml-2">Cập nhật</button>
                 </form>
             </div>
         );
@@ -114,7 +105,7 @@ let mapDispatchToProps = (dispatch) => {
         handleSetUser: () => {
             dispatch(setUserAction());
         },
-        handleSetDataForm: (user) => {
+        hanleSetDataForm: (user) => {
             dispatch({
                 type: SET_DATA_FORM,
                 payload: user,

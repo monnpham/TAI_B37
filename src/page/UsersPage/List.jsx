@@ -34,7 +34,6 @@ class List extends Component {
                         >
                             Edit
                         </button>
-                        <button className="btn btn-success">Update</button>
                     </td>
                 </tr>
             );
@@ -58,6 +57,7 @@ class List extends Component {
             .get(`https://64de24a0825d19d9bfb22b3d.mockapi.io/users/${id}`)
             .then((res) => {
                 console.log(res);
+                this.props.handleSetDataDorm(res.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -92,13 +92,12 @@ let mapDispatchToProps = (dispatch) => {
         handleSetUser: () => {
             dispatch(setUserAction());
         },
-        handleSetDataForm: (user) => {
+        handleSetDataDorm: (user) => {
             dispatch({
                 type: SET_DATA_FORM,
                 payload: user,
-            });
-        },
-
+            })
+        }
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(List);
