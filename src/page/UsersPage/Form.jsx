@@ -21,7 +21,7 @@ class Form extends Component {
     };
     handleAddUser = () => {
         axios({
-            url: "https://64de24a0825d19d9bfb22b3d.mockapi.io/users",
+            url: "https://64e6731c09e64530d18000da.mockapi.io/users",
             method: "POST",
             data: this.props.user,
         })
@@ -37,7 +37,7 @@ class Form extends Component {
     };
     handleUpdateUser = (id) => {
         axios({
-            url: `https://64de24a0825d19d9bfb22b3d.mockapi.io/users/${id}`,
+            url: `https://64e6731c09e64530d18000da.mockapi.io/users/${id}`,
             method: "PUT",
             data: this.props.user,
         })

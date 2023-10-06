@@ -42,7 +42,7 @@ class List extends Component {
 
     handleDelelte = (id) => {
         axios
-            .delete(`https://64de24a0825d19d9bfb22b3d.mockapi.io/users/${id}`)
+            .delete(`https://64e6731c09e64530d18000da.mockapi.io/users/${id}`)
             .then((res) => {
                 console.log(res);
                 message.success("xoá thành công");
@@ -54,7 +54,7 @@ class List extends Component {
     };
     handleGetDetail = (id) => {
         axios
-            .get(`https://64de24a0825d19d9bfb22b3d.mockapi.io/users/${id}`)
+            .get(`https://64e6731c09e64530d18000da.mockapi.io/users/${id}`)
             .then((res) => {
                 console.log(res);
                 this.props.handleSetDataDorm(res.data);
